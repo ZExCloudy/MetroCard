@@ -16,8 +16,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Map<String, MetroCard> metroCardMap = new HashMap<>();
-        Map<String, Passenger> passengerMap = new HashMap<>();
+        Map<String, MetroCard> metroCard = new HashMap<>();
+        Map<String, Passenger> passengers = new HashMap<>();
 
         MetroService metroService = new MetroService();
 
@@ -36,7 +36,7 @@ public class Main {
                         String cardId = tokens[1];
                         int balance = Integer.parseInt(tokens[2]);
 
-                        metroCardMap.put(
+                        metroCard.put(
                                 cardId,
                                 new MetroCard(cardId, balance)
                         );
@@ -47,22 +47,18 @@ public class Main {
                         PassengerType passengerType = PassengerType.valueOf(tokens[2]);
                         String station = tokens[3];
 
-                        Passenger passenger = passengerMap.get(cardId);
+                        Passenger passenger = passengers.get(cardId);
 
                         if (passenger == null) {
                             passenger = new Passenger(
                                     passengerType,
-                                    metroCardMap.get(cardId)
+                                    metroCard.get(cardId)
                             );
-                            passengerMap.put(cardId, passenger);
+                            passengers.put(cardId, passenger);
                         }
 
-                        JourneyType journeyType =
-                                passenger.isReturnUsed()
-                                        ? JourneyType.SINGLE
-                                        : JourneyType.RETURN;
 
-                        metroService.travel(passenger, journeyType, station);
+                        metroService.travel(passenger, station);
                         break;
                     }
 

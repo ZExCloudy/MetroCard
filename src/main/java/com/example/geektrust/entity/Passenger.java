@@ -1,15 +1,23 @@
 package com.example.geektrust.entity;
 
 import com.example.geektrust.enums.PassengerType;
-
 public class Passenger {
-    private final PassengerType type;
-    private final MetroCard metroCard;
-    private boolean returnUsed = false;
+
+    private PassengerType type;
+    private MetroCard metroCard;
+    private String lastStation;
 
     public Passenger(PassengerType type, MetroCard metroCard) {
         this.type = type;
         this.metroCard = metroCard;
+    }
+
+    public String getLastStation() {
+        return lastStation;
+    }
+
+    public void setLastStation(String lastStation) {
+        this.lastStation = lastStation;
     }
 
     public PassengerType getType() {
@@ -18,13 +26,5 @@ public class Passenger {
 
     public MetroCard getMetroCard() {
         return metroCard;
-    }
-
-    public boolean isReturnUsed() {
-        return returnUsed;
-    }
-
-    public void markReturnUsed() {
-        this.returnUsed = true;
     }
 }

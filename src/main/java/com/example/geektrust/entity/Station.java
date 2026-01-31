@@ -6,12 +6,12 @@ import java.util.Map;
 
 public class Station {
 
-    private int totalCollection;
+    private int totalFareCollected;
     private int totalDiscount;
     private final Map<PassengerType, Integer> passengers = new HashMap<>();
 
     public void addCollection(int amount) {
-        totalCollection += amount;
+        totalFareCollected += amount;
     }
 
     public void addDiscount(int discount) {
@@ -19,12 +19,15 @@ public class Station {
     }
 
     public void addPassenger(PassengerType type) {
+        if(type == null) {
+            throw new NullPointerException();
+        }
         passengers.put(type,
                 passengers.getOrDefault(type, 0) + 1);
     }
 
-    public int getTotalCollection() {
-        return totalCollection;
+    public int getTotalFareCollected() {
+        return totalFareCollected;
     }
 
     public int getTotalDiscount() {
