@@ -20,7 +20,7 @@ public class MetroCard {
     public double recharge(double amount) {
         double serviceFee = amount * 0.02;
         balance += amount;
-        return serviceFee;
+        return balance;
     }
 }
 
